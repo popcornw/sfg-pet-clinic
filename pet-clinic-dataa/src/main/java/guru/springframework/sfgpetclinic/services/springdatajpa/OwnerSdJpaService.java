@@ -43,7 +43,9 @@ public class OwnerSdJpaService implements OwnerService {
 	@Override
 	public Owner save(Owner object) {
 		// TODO Auto-generated method stub
+		System.out.println("##################");
 		return ownerRepository.save(object);
+		
 	}
 
 	@Override

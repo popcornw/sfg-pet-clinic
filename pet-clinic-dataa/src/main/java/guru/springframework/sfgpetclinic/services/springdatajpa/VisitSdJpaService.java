@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 import guru.springframework.sfgpetclinic.model.Visit;
 import guru.springframework.sfgpetclinic.repositories.VisitRepository;
 import guru.springframework.sfgpetclinic.services.CrudService;
+import guru.springframework.sfgpetclinic.services.VisitService;
 @Service
 @Profile("springdatajpa")
-public class VisitSdJpaService implements CrudService<Visit, Long> {
+public class VisitSdJpaService implements VisitService {
 private final VisitRepository visitRepository;
 
 	public VisitSdJpaService(VisitRepository visitRepository) {
