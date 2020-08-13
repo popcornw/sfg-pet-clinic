@@ -9,6 +9,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Description;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name="vists")
 public class Visit extends BaseEntity {
@@ -19,24 +30,8 @@ public class Visit extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name="pet_id")
 	private Pet pet;
-	public LocalDate getDate() {
-		return date;
-	}
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-	public String getDesctiprion() {
-		return desctiprion;
-	}
-	public void setDesctiprion(String desctiprion) {
-		this.desctiprion = desctiprion;
-	}
-	public Pet getPet() {
-		return pet;
-	}
-	public void setPet(Pet pet) {
-		this.pet = pet;
-	}
+
+
 	
 
 }
