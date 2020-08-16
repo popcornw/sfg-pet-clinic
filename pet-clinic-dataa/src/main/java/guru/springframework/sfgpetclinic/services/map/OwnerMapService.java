@@ -13,7 +13,7 @@ import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
 
 @Service
-@Profile({"default","map"})
+@Profile({ "default", "map" })
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 	private final PetTypeService petTypeService;
 	private final PetService petService;
@@ -45,24 +45,25 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 				object.getPets().forEach(pet -> {
 					if (pet.getPetType() != null) {
 						if (pet.getPetType().getId() == null) {
-							
+
 							pet.setPetType(petTypeService.save(pet.getPetType()));
 						}
 					} else {
 						throw new RuntimeException("pet Type is required");
 					}
-					if (pet.getId()==null) {
+					if (pet.getId() == null) {
 						Pet savedPet = petService.save(pet);
 						pet.setId(savedPet.getId());
-						 
+
 					}
 				});
 
 			}
 
 			return super.save(object);
+		} else {
+			return null;
 		}
-		else {return null;}
 
 	}
 
@@ -81,7 +82,8 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 	@Override
 	public Owner findByLastName(String lastName) {
 		// TODO Auto-generated method stub
-		return null;
+		return super.findAll().stream().filter(owner -> owner.getLastName().equalsIgnoreCase(lastName)).findFirst()
+				.orElse(null);
 	}
 
 }
