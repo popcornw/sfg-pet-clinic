@@ -17,7 +17,6 @@ import guru.springframework.sfgpetclinic.services.SpecialtyService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import guru.springframework.sfgpetclinic.services.VisitService;
 
-
 @Component
 public class DataLoader implements CommandLineRunner {
 	private final OwnerService ownerService;
@@ -25,8 +24,6 @@ public class DataLoader implements CommandLineRunner {
 	private final PetTypeService petTypeService;
 	private final SpecialtyService specialtyService;
 	private final VisitService visitService;
-
-	
 
 	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
 			SpecialtyService specialtyService, VisitService visitService) {
@@ -76,6 +73,12 @@ public class DataLoader implements CommandLineRunner {
 		owner1.setAddress("testttt");
 		owner1.setCity("casablanca");
 		owner1.setTelephone("45666666");
+		Pet mikesPet = new Pet();
+		mikesPet.setBirthDate(LocalDate.now());
+		mikesPet.setOwner(owner1);
+		mikesPet.setPetType(savedDogPetType);
+		mikesPet.setName("rex");
+		owner1.getPets().add(mikesPet);
 
 		ownerService.save(owner1);
 
@@ -86,28 +89,18 @@ public class DataLoader implements CommandLineRunner {
 		owner2.setAddress("testttt");
 		owner2.setCity("casablanca");
 		owner2.setTelephone("45666666");
-		ownerService.save(owner2);
-
-		Pet mikesPet = new Pet();
-		mikesPet.setBirthDate(LocalDate.now());
-		mikesPet.setOwner(owner1);
-		mikesPet.setPetType(savedDogPetType);
-		mikesPet.setName("rex");
-		owner1.getPets().add(mikesPet);
-
 		Pet fionasCat = new Pet();
 		fionasCat.setBirthDate(LocalDate.now());
 		fionasCat.setOwner(owner2);
 		fionasCat.setPetType(savedcatPetType);
 		fionasCat.setName("miwa");
 		owner2.getPets().add(fionasCat);
-		Visit catVisit= new Visit();
+		ownerService.save(owner2);
+
+		Visit catVisit = new Visit();
 		catVisit.setPet(fionasCat);
 		catVisit.setDate(LocalDate.now());
-		catVisit.setDesctiprion("sneezy little cat"); 
-		
-		
-		
+		catVisit.setDesctiprion("sneezy little cat");
 
 		System.out.println("loaded owner ... ");
 
