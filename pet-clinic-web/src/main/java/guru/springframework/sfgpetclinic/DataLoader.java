@@ -100,7 +100,7 @@ public class DataLoader implements CommandLineRunner {
 		Visit catVisit = new Visit();
 		catVisit.setPet(fionasCat);
 		catVisit.setDate(LocalDate.now());
-		catVisit.setDesctiprion("sneezy little cat");
+		catVisit.setDescription("sneezy little cat");
 
 		System.out.println("loaded owner ... ");
 
